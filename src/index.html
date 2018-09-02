@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Rubik+Mono+One" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title></title>
+  </head>
+  <body>
+    <div class="main" id="app" v-cloak>
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar pl-0 pr-0">
+                <a class="navbar-brand mr-0">
+                    <img src="images/logo.svg" v-bind:alt='$t("message.europebet_logo")' />
+                </a>
+                <form class="form-inline">
+                    <select class="selectpicker" data-width="fit" v-on:change="onChangeLanguage">
+                        <option data-content='<span class="flag-icon flag-icon-us"></span> ENG' value="en"></option>
+                        <option  data-content='<span class="flag-icon flag-icon-ru"></span> RUS' value="ru"></option>
+                        <option  data-content='<span class="flag-icon flag-icon-ge"></span> GEO' value="ka"></option>
+                    </select>
+                </form>
+            </nav>
+            <div class="intro">
+              <p class="header_text text-center">{{ $t("message.only_on_europebet") }}</p>
+              <p class="body_text text-center">{{ $t("message.get_25_percent_freebet") }}</p>
+              <p class="footer_text text-center" v-html='$t("message.collect_free_bets")'></p>
+              <p class="lgoo-area text-center"><img src="images/freebet_logo_white.png" /></p>
+            </div>
+        </div>
+    </header>
+    <section class="condittions">
+        <div class="container">
+            <div class="condittions-head">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="section__header text-center">{{ $t("message.ticket_must_meet_conditions") }}:</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="condittions-body">
+                <div class="flex-row">
+                    <div class="flex-row__col-3">
+                        <div class="card">
+                            <p class="card__header-text text-center"><img src="images/conditions/less_3.png" /></p>
+                            <p class="card__body-text">{{ $t("message.minimal_number_of_positions", {min_combined_possitions: 3}) }}</p>
+                        </div>
+                    </div>
+                    <span class="separator shakogele_icon icon-condittions_separator flex-row__col-1"></span>
+                    <div class="flex-row__col-3">
+                        <div class="card">
+                          <p class="card__header-text text-center"><img src="images/conditions/min15.png" /></p>
+                            <p class="card__body-text">{{ $t("message.minimal_odd_on_positions", {min_odd_possitions: 1.5}) }}</p>
+                        </div>
+                    </div>
+                    <span class="separator shakogele_icon icon-condittions_separator flex-row__col-1"></span>
+                    <div class="flex-row__col-3">
+                        <div class="card">
+                          <p class="card__header-text text-center"><img src="images/conditions/min1.png" /></p>
+                            <p class="card__body-text" v-html="$t('message.minimal_bet_amount', {min_bet_amount: 1})"></p>
+                        </div>
+                    </div>
+                    <span class="separator shakogele_icon icon-condittions_separator flex-row__col-1"></span>
+                    <div class="flex-row__col-3">
+                        <div class="card">
+                          <p class="card__header-text text-center"><img src="images/conditions/pre-match.png" /></p>
+                            <p class="card__body-text">{{ $t("message.freebet_applies_to_all_pre_match") }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="condittions-footer">
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="button" name="button" class="btn btn-success btn-lg">{{ $t("message.place_bet") }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="freebet">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 order-2 col-sm-12 order-sm-2 col-md-6 order-md-1">
+                    <div class="freebet__ticket">
+                        <span class="arrow-right"></span>
+                        <div class="freebet__ticket-container">
+                            <div class="freebet__ticket-head">
+                                <div class="flex-row">
+                                    <div class="flex-row__col-1">
+                                        <div class="freebet__logo">
+                                            <img src="images/freebet_logo.png" v-bind:alt='$t("message.freebet_logo")'/>
+                                        </div>
+                                    </div>
+                                    <div class="flex-row__col-1">
+                                        <div class="freebet__deposite">
+                                            {{ $t("message.deposite") }}: <span class="freebet__deposite--orange">15.00 <span class="lari_symbol">L</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="freebet__ticket-body">
+                                <div class="freebet__ticket-body-header">
+                                    <h4><span class="orange">{{ $t("message.ticket") }}</span></h4>
+                                </div>
+                                <div class="freebet__ticket-body-items">
+                                    <div class="freebet__ticket-body-items__single" v-for="(ticket, index) in tickets[locale]">
+                                        <p class="">
+                                            <span class="ticket-item-index">{{ index + 1 }}.</span>
+                                            {{ ticket.title }}<br />
+                                            {{ ticket.result_category }}*
+                                        </p>
+                                        <div class="row">
+                                            <div class="col text-left">
+                                                <span class="orange">{{ ticket.result }}</span>
+                                            </div>
+                                            <div class="col text-right">
+                                                <span class="orange">{{ ticket.coeficient }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="freebet__ticket-body-footer">
+                                    <div class="freebet__ticket-body-footer-coeficient">
+                                        <div class="row">
+                                            <div class="col text-left">
+                                                <span>{{ $t("message.coeficient") }}: </span>
+                                            </div>
+                                            <div class="col text-right">
+                                                <span>{{ getTotalCoeficient() }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="freebet__ticket-body-footer-bet">
+                                        <div class="flex-row">
+                                            <div class="flex-row__col-1 text-left">
+                                                <span>{{ $t("message.placement") }}: </span>
+                                            </div>
+                                            <div class="flex-row__col-1 text-right">
+                                                <div class="form-check flex-row checkbox-container">
+                                                    <div class="flex-row__col-1">
+                                                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                      <label class="form-check-label" for="defaultCheck1">
+                                                        <img src="images/freebet_logo.png" v-bind:alt='$t("message.freebet_logo")' /> <span class="ticket__bet">25.00</span>
+                                                      </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-check input-container mt-2">
+                                                    <input type="text" class="form-control" id="bet" v-bind:placeholder='$t("message.bet")' v-model="betValue" v-on:keypress="isNumber()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="freebet__ticket-body-footer-win">
+                                        <div class="row">
+                                            <div class="col text-left">
+                                                <span>{{ $t("message.win") }}: </span>
+                                            </div>
+                                            <div class="col text-right">
+                                                <span>{{ getTotalCoeficient() * betValue }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="freebet__ticket-footer bottomline">
+                              <div class="row desktop_verion">
+                                  <div class="col pr-0">
+                                      <button type="button" name="button" class="btn btn-default">{{ $t("message.win") }}</button>
+                                  </div>
+                                  <div class="col pl-0">
+                                      <button type="button" name="button" class="btn btn-success">{{ $t("message.place_bet") }}</button>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col pl-0 mobile_version">
+                            <button type="button" name="button" class="btn btn-success btn-lg">{{ $t("message.place_bet") }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 order-1 col-sm-12 order-sm-1 col-md-6 order-md-2 pl-0 forms-container">
+                    <div class="freebet__form">
+                        <div class="freebet__form-header">
+                            <span class="orange">{{ $t("message.retrieve") }} 25%</span> {{ $t("message.open_each_bet_in_form") }}
+                        </div>
+                        <div class="freebet__form-body">
+                            <div class="card">
+                                <div class="card-title">
+                                    <span>{{ $t("message.for_example") }}:</span>
+                                </div>
+                                <div class="card-body p-0">
+                                    <form>
+                                        <div class="form-group">
+                                          <div class="flex-row flex-cont-5">
+                                              <label for="stake" class="flex-row__col-3">{{ $t("message.stake") }}: </label>
+                                              <div class="p-0 flex-row__col-7">
+                                                <input type="text" class="form-control dark-input lari-background" id="stake" v-bind:placeholder='$t("message.stake")' v-model="stake" v-on:keypress="isNumber()">
+                                              </div>
+                                          </div>
+                                          <div class="separator">
+                                              <span class="shakogele_icon icon-arrow_right"></span>
+                                          </div>
+                                          <div class="flex-row flex-cont-7">
+                                            <label for="stake" class="flex-row__col-5">{{ $t("message.freebet") }} 25%: </label>
+                                            <div class="flex-row__col-7">
+                                                <div class="form-control dark-input freebet_area">
+                                                    <span class="freebet_placeholder"><span>{{ stake*0.25 }}</span></span>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row rules_and_tips">
+                <div class="col-12 order-2 col-sm-12 order-sm-2 col-md-6 order-md-1">
+                    <div class="freebet__tip mt-4">
+                        <div class="freebet__tip-header">
+                            <h3>{{ $t("message.keep_in_mind") }}:</h3>
+                        </div>
+                        <div class="freebet__tip-body">
+                            <ul class="">
+                                <li>{{ $t("message.freebets_do_not_apply") }}.</li>
+                                <li>{{ $t("message.slipes_cannot_participate") }}.</li>
+                                <li>{{ $t("message.cachout_does_not_apply") }}.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 order-1 col-sm-12 order-sm-1 col-md-6 order-md-2 pl-0">
+                    <div class="freebet__rules">
+                        <div class="freebet__rules-head">
+                            <h3>{{ $t("message.rules_of_crediting") }}:</h3>
+                        </div>
+                        <div class="freebet__rules-body">
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-automatic_accrual"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.automatic_acrual") }}</span>
+                                    <p class="">{{ $t("message.freebets_are_credited_automatically") }}.</p>
+                                </div>
+                            </div>
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-sports_only"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.sports_only") }}</span>
+                                    <p class="">{{ $t("message.you_can_only_place_on_sports") }}.</p>
+                                </div>
+                            </div>
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-unlimited_accumulation"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.automatic_acrual") }}</span>
+                                    <p class="">{{ $t("message.no_dayly_limit_on_a_number_of_freebets") }}.</p>
+                                </div>
+                            </div>
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-placement"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.placement") }}</span>
+                                    <p class="">{{ $t("message.automatic_acrual") }}.</p>
+                                </div>
+                            </div>
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-accrual"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.accrual") }}</span>
+                                    <p class="" v-html="$t('message.if_freebet_wins_user_will_be_credited')"></p>
+                                </div>
+                            </div>
+                            <div class="freebet__rules-body__item">
+                                <div class="freebet__rules-body__item-icons-area">
+                                    <span class="shakogele_icon icon-duplication"></span>
+                                </div>
+                                <div class="freebet__rules-body__item-text-area">
+                                    <span class="freebet__rules-body__item-title">{{ $t("message.duplication") }}</span>
+                                    <p class="">{{ $t("message.on_duplicated_slips") }}.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 offset-md-6">
+                    <div class="freebet__rules-footer">
+                        <button type="button" name="button" class="btn btn-success btn-lg">{{ $t("message.place_bet") }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer_wrapper">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="footer__header text-center">{{ $t("message.other_offers") }}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 order-2 col-sm-12 order-2 col-md-6 order-md-1 mt-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="logo">
+                                    <div class="logo-outer">
+                                        <div class="logo-outer-wrapper desktop_verion">
+                                            <img src="images/1_plus_1_freebet.svg" v-bind:alt='$t("message.one_plus_1_freebet")' class="float-right img-fluid" />
+                                        </div>
+                                        <div class="logo-outer-wrapper mobile_verion">
+                                            <img src="images/sng.png" v-bind:alt='$t("message.one_plus_1_freebet")' class="float-right img-fluid" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 pl-0">
+                                <p class="footer__text--bold">{{ $t("message.get_unlimited_freebets") }}</p>
+                                <p>{{ $t("message.only_on_europebet") }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6 offset-6 pl-0">
+                              <p class="mt-10">
+                                  <button type="button" class="btn btn-warning footer__button" name="button">{{ $t("message.learn_more") }}</button>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 order-1 col-sm-12 order-1 col-md-6 order-md-2 mt-3">
+                        <div class="row">
+                          <div class="col-6">
+                              <div class="logo">
+                                  <div class="logo-outer logo-rightmost">
+                                      <div class="logo-outer-wrapper logo-rightmost-wrapper">
+                                          <img src="images/cach_out.png" v-bind:alt='$t("message.cache_out")' class="float-right img-fluid" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-6 pl-0">
+                              <p class="footer__text--bold">{{ $t("message.use_cacheout_function") }}</p>
+                              <p>{{ $t("message.stop_the_slip_at_desired_time") }}</p>
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-6 offset-6 pl-0">
+                              <p class="mt-10">
+                                  <button type="button" class="btn btn-warning footer__button" name="button">{{ $t("message.learn_more") }}</button>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

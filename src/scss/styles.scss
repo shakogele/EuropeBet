@@ -1,0 +1,1152 @@
+$theme-colors: (
+  'primary': teal,
+  'success': #3ccc00
+);
+
+$footer-bg: #030713;
+$footer-button-bg: #f05a22;
+$logo-rightmost-wrapper-bg: #01040b;
+$logo-wrapper-bg: #1c2023;
+$freebet-bg: #049a8d;
+$orange: #ef5a21;
+$language-picker-bg: rgba(51, 44, 44, 0.9);
+$condittions-header-text-color: #08214f;
+$intro-text-color: #fbded2;
+$freebet-ticket-bg: #ed6320;
+$freebet-ticket-head-bg: #202326;
+$freebet-ticket-coeficient-bg: #24282b;
+$freebet-ticket-win-bg: #494c4e;
+$freebet-ticket-item-bg: #494c4e;
+$freebet-ticket-item-color: #cccccc;
+$freebet-form-border-color: #441803;
+$freebet-form-bg: #0a0c18;
+$freebet-form-input-border: #424242;
+$freebet-form-input-color: #a8a9a9;
+$freebet-tip-bg: #047e74;
+$freebet-text-color: #9cdcd5;
+$teal: teal;
+
+[v-cloak] { display: none; }
+[v-cloak]::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url('../images/loader.svg');
+  background-size: cover;
+  left: 50%;
+  top: 50%;
+}
+
+@mixin icon($property) {
+    background: url('../images/icons/'+split-str($property, '-')+'.png');
+    background-repeat: no-repeat;
+};
+
+@font-face {
+   font-family: Lari;
+   src: url(../fonts/Lari.ttf);
+};
+@font-face {
+   font-family: industry-ultra;
+   src: url('../fonts/Industry-Ultra.otf');
+};
+@font-face {
+   font-family: mediator-narrow;
+   src: url('../fonts/MediatorNarrow-Regular.eot') format('embedded-opentype'),
+        url('../fonts/MediatorNarrow-Regular.woff2') format('woff2'),
+        url('../fonts/MediatorNarrow-Regular.woff') format('woff'),
+        url('../fonts/MediatorNarrow-Regular.ttf') format('truetype');
+};
+.lari_symbol{
+  font-family: Lari;
+}
+
+@function split-str($string, $separator) {
+   $index: str-index($string,  $separator);
+   $str-1: str-slice($string, 1, $index - 1);
+   $str-2: str-slice($string, $index + 1);
+   @return $str-2;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-select/sass/bootstrap-select.scss";
+@import "node_modules/flag-icon-css/sass/flag-icon.scss";
+
+@media screen and (max-width: 767px){
+  body{
+      background-image: url('../images/background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top;
+  };
+  .main-header{
+    height: 520px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 42%,rgba(0,0,0,0) 77%), url('../images/mobile_header_background.png');
+    clip-path: polygon(0 0, 100vw 0, 100vw 505px, 0 520px);
+    z-index: 1;
+    .intro{
+      margin-top: 80px;
+      .header_text{
+        font-family: mediator-narrow;
+        font-size: 18px;
+        color: $intro-text-color;
+        margin-bottom: 10px;
+        margin-top: 0px;
+      };
+      .body_text{
+        font-family: industry-ultra;
+        font-size: 30px;
+        font-weight: 1000;
+        text-transform: uppercase;
+        line-height: 40px;
+        text-shadow: -1px 5px 15px rgba(51,51,51,0.84);
+        color: $intro-text-color;
+      };
+      .footer_text{
+        font-family: mediator-narrow;
+        font-size: 18px;
+        color: $intro-text-color;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+    }
+  };
+  .condittions{
+    background: url('../images/icons_area_bg.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    z-index: 2;
+    height: 800px;
+    margin-top: -120px;
+    padding-top: 80px;
+    .flex-row{
+      display: flex;
+      flex-direction: column!important;
+      &__col-1{
+        flex:1;
+      };
+      &__col-3{
+        flex: 3;
+      };
+    };
+    .section__header{
+        margin-top: 60px;
+        font-family: mediator-narrow;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 25px;
+    };
+    .separator{
+      display: none;
+    };
+    &-head{
+
+    };
+    &-body{
+      margin-top: 20px;
+      .card{
+        flex-direction: row;
+        display: flex;
+        &__header-text{
+          flex:1;
+        };
+        &__body-text{
+          flex:1;
+          text-align: left;
+          padding-left: 10px;
+          font-size: 16px;
+        };
+      };
+    };
+    &-footer{
+      .btn{
+          margin-top: 30px;
+      };
+    };
+  };
+  .freebet{
+    background: url('../images/freebet_background.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: auto;
+    margin-top: -30px;
+    margin-bottom: -100px;
+    padding-bottom: 130px;
+    .forms-container{
+      height: 330px;
+    };
+    .pl-0{
+      padding-left: 15px!important;
+    };
+    .rules_and_tips{
+      margin-top: 0px!important;
+    };
+    &__ticket{
+      .arrow-right{
+        display: none;
+      };
+      margin-left: 0px!important;
+      font-family: mediator-narrow;
+      font-size: 12px;
+      &-head{
+        .flex-row{
+          display: flex;
+          flex-direction: row;
+          &__col-1{
+            flex:1;
+            .freebet__logo{
+              text-align: center;
+              img{
+                width: 80%;
+                height: 20px;
+              };
+            }
+            .freebet__deposite{
+              text-align: center;
+              font-size: 10px;
+              width: 100%;
+              padding: 5px;
+              font-family: industry-ultra;
+            }
+          }
+        }
+      };
+      &-body{
+        &-header{
+
+        };
+        &-items{
+
+        };
+        &-footer{
+
+          &-bet{
+            .checkbox-container{
+              width: 100px;
+              .form-check-input{
+                margin: 0;
+                margin-left: -80px;
+              };
+              .form-check-label{
+                text-align: right;
+                float: right;
+                img{
+                  width: 35px;
+                  height: 10px;
+                  margin-top: -4px;
+                };
+              };
+
+              .ticket__bet{
+                font-size: 10px;
+              };
+            };
+            .input-container{
+              width: 100px;
+
+              input{
+                font-size: 10px;
+              }
+            }
+            .flex-row{
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              &__col-1{
+                flex:1;
+                flex-direction: row;
+              }
+            };
+          }
+        };
+      };
+      &-footer{
+        .desktop_verion{
+          display: none;
+        }
+      };
+      .mobile_version{
+        text-align: center;
+        .btn{
+          margin-top: 15px;
+          text-transform: uppercase;
+          font-family: mediator-narrow;
+          width: 180px;
+        };
+      };
+    };
+    &__tip{
+      margin-left: 0px!important;
+    };
+    &__rules{
+
+        &-head{
+            text-align: center;
+        };
+        &-body{
+        };
+        &-footer{
+            text-align: center;
+            .btn{
+              margin-top: 15px;
+              text-transform: uppercase;
+              font-family: mediator-narrow;
+              width: 180px;
+            };
+        }
+    }
+  };
+  .footer{
+    padding: 60px 0px;
+    &__text{
+      font-size: 14px;
+      &--bold{
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+    &__header{
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 50px;
+    };
+    .logo{
+      &-outer{
+        .desktop_verion{
+          display: none;
+        };
+        .mobile_verion{
+          display: block;
+        };
+        &-wrapper{
+        }
+      }
+    };
+    &__button{
+        background: $footer-button-bg;
+        font-size: 14px;
+        border: none;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 18px;
+    };
+  }
+};
+@media screen and (max-width: 1140px){
+  .freebet{
+    &__form{
+      &-header{
+        font-size: 24px;
+        font-family: industry-ultra;
+        font-weight: 900;
+        text-align: center;
+      };
+      &-body{
+        padding: 10px 15px 0px 30px;
+        .card{
+          border: none;
+          &-title{
+            font-family: mediator-narrow;
+            font-size: 16px;
+          };
+          &-body{
+            .separator{
+              span{
+                transform: rotate(90deg);
+              };
+            };
+            .flex-row{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              &__col-3{
+                flex: 5;
+                margin: 0px;
+              };
+              &__col-5{
+                flex: 5;
+                margin: 0px;
+              };
+              &__col-7{
+                flex: 7;
+              };
+            };
+          }
+        }
+      }
+    };
+  }
+};
+@media (min-width: 768px){
+  body{
+      background-image: url('../images/background_desktop.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top;
+  };
+  .container {
+      max-width: 1290px;
+  };
+  .mobile_verion{
+    display: none;
+  };
+  .desktop_verion{
+    display: block;
+  };
+  .main-header{
+    height: 590px;
+    clip-path: polygon(0 0, 100vw 0, 100vw 510px, 0 590px);
+    .intro{
+      margin-top: 70px;
+      .header_text{
+        font-family: mediator-narrow;
+        font-size: 28px;
+        font-style: italic;
+        color: $intro-text-color;
+        margin-bottom: 20px;
+        margin-top: 0px;
+      };
+      .body_text{
+        font-family: industry-ultra;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 40px;
+        color: $intro-text-color;
+        text-shadow: -1px 5px 15px rgba(51,51,51,0.84);
+        margin-bottom: 30px;
+        font-weight: bold;
+      };
+      .footer_text{
+        font-family: mediator-narrow;
+        font-size: 18px;
+        color: $intro-text-color;
+        text-align: center;
+        margin-bottom: 30px;
+        font-style: italic;
+      };
+    };
+  };
+  .condittions{
+    height: 578px;
+    padding-top: 200px;
+    margin-top:-170px;
+    background: url('../images/icons_area_desktop_bg.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    .flex-row{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      &__col-1{
+        flex:1;
+      };
+      &__col-3{
+        flex: 3;
+      };
+    };
+      &-head{
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        h3{
+          font-weight: bold;
+          font-size: 16px;
+        }
+      };
+      &-body{
+          margin-top: 50px;
+          max-width: 960px;
+          margin-left: auto;
+          margin-right: auto;
+          .card{
+            &__body-text{
+              text-align: center;
+            }
+          }
+      };
+      &-footer{
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        .btn{
+          font-weight: bold;
+        }
+      }
+  };
+  .freebet{
+    background: url('../images/freebet_background_desktop.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: auto;
+    padding-bottom: 150px;
+    margin-top: 30px;
+    &__ticket{
+      &-head{
+        .flex-row{
+          display: flex;
+          flex-direction: row;
+          &__col-1{
+            width: 50%;
+            text-align: center;
+            .freebet__logo{
+              text-align: center;
+            };
+            .freebet__deposite{
+              width: 160px;
+              margin: 0 auto;
+            };
+          };
+        };
+      };
+      &-body{
+        &-footer{
+          &-bet{
+            .flex-row{
+              display: flex;
+              &__col-1{
+                flex: 1;
+              };
+              .checkbox-container{
+                width: 160px;
+                .form-check-input{
+                  margin: 0;
+                }
+                .form-check-label{
+                  margin-left: 18px;
+                  img{
+                    width: 70px;
+                  }
+                }
+              };
+              .input-container{
+                width: 160px;
+              }
+            }
+          }
+        }
+      }
+      &-footer{
+        .desktop_verion{
+          display: flex;
+        };
+      };
+      .mobile_version{
+        display: none;
+      }
+    };
+  };
+  .footer{
+    margin-top: -85px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    &__header{
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 70px;
+      font-family: mediator-narrow;
+    };
+    &__button{
+        background: $footer-button-bg;
+        font-size: 14px;
+        border: none;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 18px;
+    };
+    &__text{
+      &--bold{
+        font-weight: bold;
+      };
+    };
+  };
+};
+@media (min-width: 1141px){
+  .freebet{
+    &__form{
+      .freebet_placeholder{
+        min-width: 150px;
+        max-width: 160px;
+      }
+      &-header{
+        font-family: industry-ultra;
+        font-weight: 1000;
+        text-align: left;
+        font-size: 30px;
+        margin-top: -15px;
+      };
+      &-body{
+        padding: 15px 15px 35px 30px;
+        box-shadow: 0px 0px 10px 1px rgba(239,90,33,0.20);
+        .card{
+          border: none;
+          &-title{
+            font-family: mediator-narrow;
+            font-size: 16px;
+          };
+          &-body{
+            .form-group{
+              .flex-cont-5{
+                max-width: 190px;
+                float:left;
+              };
+              .separator{
+                width: 40px;
+                float:left;
+              };
+              .flex-cont-7{
+                max-width: 290px;
+                float: left;
+                .freebet_area{
+                  margin-left: 10px;
+                }
+              };
+              .flex-row{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                &__col-3{
+                  flex: 3;
+                  margin: 0px;
+                };
+                &__col-7{
+                  flex: 8;
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  }
+}
+.navbar-brand{
+  padding-top: 10px;
+};
+.main-header{
+  background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 42%,rgba(0,0,0,0) 77%), url('../images/banner_bg_en.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto;
+}
+.bootstrap-select{
+  .dropdown-toggle{
+    width: 80px;
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    color: $freebet-ticket-item-color;
+    background: $language-picker-bg;
+    border: none;
+    .filter-option-inner{
+      display: flex!important;
+      &-inner{
+        display: flex!important;
+        align-items: flex-end;
+        justify-content: flex-end;
+      };
+    };
+    .flag-icon{
+      width: 30px;
+      height: 20px;
+    }
+  };
+  .dropdown-toggle:after{
+    content: none;
+  };
+  .dropdown-toggle:hover{
+    background: $language-picker-bg;
+    color: $freebet-ticket-item-color;
+  };
+  .dropdown-toggle:focus{
+    border: none;
+    box-shadow: none!important;
+    outline: none!important;
+    background: $language-picker-bg;
+    color: $freebet-ticket-item-color;
+  };
+  .dropdown-toggle:active{
+    border:none!important;
+    background: $language-picker-bg!important;
+    color: $freebet-ticket-item-color;
+  }
+  .dropdown-menu{
+    padding: 0px;
+    width: 80px;
+    background: $language-picker-bg;
+    .inner {
+      overflow: hidden;
+    };
+    ul{
+      li{
+        text-align: center;
+        .dropdown-item{
+          padding: 5px 0px;
+          text-align: center;
+          color: $freebet-ticket-item-color;
+        };
+        .dropdown-item:hover{
+          background: teal;
+          color: white;
+        }
+      }
+    }
+    .text{
+      font-size:12px;
+    }
+
+  }
+}
+
+
+// Colors
+.orange{
+    color: $orange;
+};
+
+.header{
+    background: #ccc;
+};
+.shakogele_icon{
+    display: block;
+    width: 32px;
+    height: 32px;
+};
+.icon-duplication{
+    @include icon(icon-duplication);
+};
+.icon-accrual{
+    @include icon(icon-accrual);
+};
+.icon-placement{
+    @include icon(icon-placement);
+};
+.icon-unlimited_accumulation{
+    @include icon(icon-unlimited_accumulation);
+};
+.icon-sports_only{
+    @include icon(icon-sports_only);
+};
+.icon-automatic_accrual{
+    @include icon(icon-automatic_accrual);
+};
+.icon-arrow_right{
+    @include icon(icon-arrow_right);
+};
+.icon-condittions_separator{
+    @include icon(icon-condittions_separator);
+};
+.condittions{
+    //clip-path: polygon(0 30vh, 100vw 0, 100vw 55vh, 0 0);
+    &-head{
+      h3{
+        text-transform: uppercase;
+      };
+    };
+    &-body{
+      .separator{
+        margin-top: 30px;
+        background-position: center center;
+      };
+      .card{
+        background: none;
+        border: none;
+        font-size: 16px;
+        &__header-text{
+          font-weight: 1000;
+          font-size: 36px;
+          color: $condittions-header-text-color;
+          .upperc{
+            font-size: 28px;
+            text-transform: uppercase;
+            .bigger-text{
+              font-size: 37px;
+            }
+          };
+          .number{
+            font-size: 60px;
+            text-transform: uppercase;
+          };
+        }
+      }
+    };
+    &-footer{
+      .btn{
+        width: 180px;
+        text-transform: uppercase;
+      }
+    }
+};
+.freebet{
+    .rules_and_tips{
+        margin-top: -350px;
+        align-items: flex-end;
+        justify-content: flex-end;
+    };
+    &__ticket{
+        background: $freebet-ticket-bg;
+        border-radius: 10px;
+        margin-left: 50px;
+        max-width: 460px;
+        padding: 25px 15px;
+        -webkit-box-shadow: 0px 0px 36px 2px rgba(46,46,46,1);
+        box-shadow: 0px 0px 36px 2px rgba(46,46,46,1);
+    .arrow-right {
+          float: right;
+          margin-right: -35px;
+          margin-top: 25px;
+          width: 0;
+          height: 0;
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          border-left: 20px solid $freebet-ticket-bg;
+        }
+        &-container{
+            background-color: black;
+            .bottomline{
+              padding: 0px 1px 1px 1px;
+            };
+        };
+        &-head{
+            background: $freebet-ticket-coeficient-bg;
+            background-image: url('../images/ticket_background.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 25px 30px;
+            margin-bottom: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            .freebet__logo{
+              text-align: right;
+              img{
+                height: 30px;
+              }
+            };
+            .freebet__deposite{
+              text-align: center;
+              line-height: 15px;
+              background: $freebet-ticket-item-bg;
+              color: $freebet-ticket-item-color;
+              font-size: 15px;
+              text-transform: uppercase;
+              padding: 10px;
+              border-radius: 2px;
+              &--orange{
+                color: $orange;
+              };
+            };
+        };
+        &-body{
+            border: 1px solid black;
+            &-header{
+                background: $freebet-ticket-head-bg;
+                padding: 14px 20px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                border: 1px solid black;
+                h4{
+                    font-size: 14px;
+                    color: $orange;
+                    margin: 0;
+                    text-transform: uppercase;
+                };
+            };
+            &-items{
+                &__single{
+                    padding: 15px 20px;
+                    background: $freebet-ticket-item-bg;
+                    color: $freebet-ticket-item-color;
+                    text-transform: uppercase;
+                    border: 1px solid black;
+                    p{
+                      margin-bottom: 5px;
+                    }
+                    .row{
+                      .col{
+                        line-height: 14px;
+                      };
+                    };
+                }
+            };
+            &-footer{
+                &-coeficient{
+                  background: $freebet-ticket-coeficient-bg;
+                  padding: 14px 20px;
+                  color: $freebet-ticket-item-color;
+                  border: 1px solid black;
+                };
+                &-bet{
+                  padding: 14px 20px;
+                  color: $freebet-ticket-item-color;
+                  border: 1px solid black;
+                  background-color: $freebet-ticket-coeficient-bg;
+                  background-image: linear-gradient(to right, #5c362b , #2e2a2b);
+                  .row{
+                    align-items: center;
+                    justify-content: center;
+                  }
+                  .checkbox-container{
+                      padding: 10px;
+                      border: 1px solid #473e3c;
+                      border-radius: 2px;
+                      background: #3b3331;
+                      float: right;
+                      line-height: 15px;
+                      label{
+                        height: 15px;
+                        line-height: 15px;
+                      };
+                      .form-check-input{
+                        margin-top: 0px;
+                      };
+                      img{
+                        margin-right: 4px;
+                      };
+                  };
+                  .input-container{
+                      padding: 0px;
+                      border-radius: 2px;
+                      background: $freebet-ticket-coeficient-bg;
+                      float: right;
+                      clear:both;
+                      input{
+                          color: white;
+                          height: 33px;
+                          border-color: #473e3c;
+                          text-align: right;
+                          padding: 10px;
+                          background: none;
+                      }
+                  }
+                };
+                &-win{
+                  background: $freebet-ticket-win-bg;
+                  padding: 14px 20px;
+                  color: $freebet-ticket-item-color;
+                  border: 1px solid black;
+                }
+            };
+        };
+        &-footer{
+          border: 1px solid black;
+          .btn{
+            width: 100%;
+            border-radius: 0px;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+          };
+          .btn-default{
+            background: $freebet-ticket-head-bg;
+          }
+
+        }
+    };
+    &__form{
+      .freebet_placeholder{
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        background: url('../images/freebet_logo.png');
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 70px 15px;
+      };
+        &-header{
+            word-spacing: 0px;
+            color: white;
+            text-transform: uppercase;
+        };
+        &-body{
+            margin-top: 30px;
+            margin-bottom: 110px;
+            border: 1px solid $freebet-form-border-color;
+            background: $freebet-form-bg;
+            border-radius: 10px;
+            .margin-left-10{
+              margin-left: 10px;
+            };
+            .margin-left-15{
+              margin-left: 15px;
+            };
+            .width-110{
+              width: 110px;
+            };
+            .width-195{
+              width: 195px;
+            };
+
+            .card{
+              background: none;
+              color: white;
+              &-title{
+                text-transform: uppercase;
+                font-size: 16px;
+                font-weight: bold;
+              };
+              &-body{
+                color: $freebet-form-input-color;
+                .dark-input{
+                    background: $freebet-form-bg;
+                    border-color: $freebet-form-input-border;
+                    line-height: 20px;
+                    img{
+                      float: right;
+                    }
+                };
+                .lari-background{
+                    background: url('../images/lari.png');
+                    background-repeat: no-repeat;
+                    background-position: right;
+                    padding-right: 10px;
+                };
+                .freebet_area{
+                    font-size: 20px;
+                    padding: 10px;
+                    color: white;
+                }
+
+              }
+            }
+        };
+    };
+    &__tip{
+        background: $freebet-tip-bg;
+        padding: 20px 15px;
+        margin-left: 50px;
+        max-width: 460px;
+        border-radius: 10px;
+        color: $freebet-text-color;
+        font-size: 14px;
+        &-header{
+            h3{
+              font-size: 24px;
+              font-weight: bold;
+            };
+        };
+        &-body{
+            ul{
+              padding: 0px 15px;
+            }
+        };
+    };
+    &__rules{
+        color: white;
+        &-head{
+            h3{
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 24px;
+              padding: 30px 0px;
+            }
+        };
+        &-body{
+            &__item{
+                font-size: 16px;
+                display: flex;
+                &-icons-area{
+                    float: left;
+                    flex: 1;
+                    min-width: 47px;
+                };
+                &-text-area{
+                    flex: 15;
+                };
+                &-title{
+                  text-transform: uppercase;
+                  font-weight: bold;
+                }
+            }
+        };
+        &-footer{
+            margin-top: 10px;
+            .btn{
+              width: 180px;
+              font-size: 20px;
+              text-transform: uppercase;
+              font-weight: bold;
+              color: white;
+            }
+        }
+    }
+}
+.footer{
+  background: $footer-bg;
+  font-family: mediator-narrow;
+  color: white;
+  .footer_wrapper{
+    max-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+  };
+  .logo{
+    &-rightmost{
+      img{
+        padding: 10px;
+        background: $logo-wrapper-bg;
+        border-radius: 5px;
+      }
+    };
+  }
+}
+// .footer {
+//     background: $footer-bg;
+//     color: white;
+//     font-size: 16px;
+//     padding-bottom: 100px;
+//     padding-top: 70px;
+//     .logo{
+//         &-outer{
+//             width: 100%;
+//             padding-top: 15px;
+//             border-radius: 40px;
+//             float: right;
+//             min-width: 210px;
+//             &-wrapper{
+//                 height: 65px;
+//                 width: 190px;
+//                 margin: 0 auto;
+//                 padding: 10px;
+//             }
+//         }
+//         &-rightmost{
+//             background: $logo-rightmost-wrapper-bg;
+//             &-wrapper{
+//                 background: $logo-wrapper-bg;
+//                 border-radius: 10px;
+//             };
+//         };
+//     };
+//     &__header{
+//         font-size: 24px;
+//         text-transform: uppercase;
+//         margin-bottom: 70px;
+//     };
+//     &__button{
+//         background: $footer-button-bg;
+//         font-size: 14px;
+//         border: none;
+//         color: white;
+//         text-transform: uppercase;
+//         font-weight: bold;
+//         line-height: 18px;
+//     };
+//     &__text{
+//       &--bold{
+//         font-weight: bold;
+//       }
+//     }
+// }
